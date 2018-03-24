@@ -82,7 +82,10 @@ def main():
     print("classifying images in {}".format(input_dir))
     for fname in tqdm(os.listdir(input_dir)):
         img_path = os.path.join(input_dir, fname)
-        pred, locs = predict_one_image(img_path, clf, labels)
+        try:
+            pred, locs = predict_one_image(img_path, clf, labels)
+        except:
+            print("Skipping {}".format(img_path))
         if not locs:
             continue
         locs = \
