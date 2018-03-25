@@ -28,13 +28,16 @@ You can download LFWA+ dataset [here](http://mmlab.ie.cuhk.edu.hk/projects/Celeb
 python feature_extraction.py --data_dir LFWA/ --save_feature feature.csv --save_label label.csv
 ```
 You can run feature_extraction.py like the above command or just run the jupyter notebook (feature-extracion.ipynb) step by step.
+
 We are going to use the face embedding function _face_encodings_ in [face_recognition](https://github.com/ageitgey/face_recognition/) package, which is based on [dlib](http://dlib.net/)'s _face_recognition_model_v1_. This function takes a face image as input and outputs a 128-dimensional face embedding vector. This function is basically an implementation of [Face-Net](https://arxiv.org/abs/1503.03832), a deep CNN trained with triplet loss. Please refer to the [original paper](https://arxiv.org/abs/1503.03832) for more details
 
-For face detection, I just used [face_recognition](https://github.com/ageitgey/face_recognition/)'s  _face_locations_. This is a histogram of oriented gradient (HOG) by default. You can use a CNN face detector by changing input parameters in line 49 of feature_extraction.py and line 20 of pred.py.
+For face detection, I just used [face_recognition](https://github.com/ageitgey/face_recognition/)'s  _face_locations_. This is a histogram of oriented gradient (HOG), which is quite outdated, by default. You can use a CNN face detector by changing input parameters in line 49 of feature_extraction.py and line 20 of pred.py like the follwing
 ```python
+# line 49 of feature_extraction.py
 X_faces_loc = face_locations(X_img, model = "cnn")
 ```
 ```python
+# line 20 of pred.py
 locs = face_locations(X_img, number_of_times_to_upsample = N_UPSCLAE, model = "cnn")
 ````
 
@@ -43,6 +46,8 @@ locs = face_locations(X_img, number_of_times_to_upsample = N_UPSCLAE, model = "c
 python train.py --feature feature.csv --label label.csv --save_model face_model.pkl
 ```
 You can run train.py as above or just run the jupyter notebook (train.ipynb) step by step.
+
+I used _MLPClassifier_ in [sklearn](http://scikit-learn.org/) package for the classifier. You can change it to the classifier of your flavor but I like _MLPClassifier_ since it is really simple!
 
 
 #### Prediction
@@ -66,4 +71,4 @@ I love Obama.. Please don't get me wrong!
 
 ### Future Works
 - [ ] Add more data (Google Image Search)
-- [ ] Use a better face detection model
+- [ ] Use a better face detection model (faster rcnn)
