@@ -10,6 +10,7 @@ from PIL import Image, ImageDraw, ImageFont
 from tqdm import tqdm
 import cv2
 import pandas as pd
+
 # we are only going to use 4 attributes
 COLS = ['Male', 'Asian', 'White', 'Black']
 N_UPSCLAE = 1
@@ -76,8 +77,8 @@ def main():
     if not os.path.isdir(output_dir):
         os.mkdir(output_dir)
     # load the model
-    with open(model_path) as f:
-        clf, labels = pickle.load(f)
+    with open(model_path,'rb') as f:
+        clf, labels = pickle.load(f, encoding='latin1')
 
     print("classifying images in {}".format(input_dir))
     for fname in tqdm(os.listdir(input_dir)):
