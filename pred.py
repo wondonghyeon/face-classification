@@ -9,7 +9,7 @@ from face_recognition import face_locations
 from PIL import Image, ImageDraw, ImageFont
 from tqdm import tqdm
 import cv2
-import pandas as pd
+import pandas as pdp
 
 # we are only going to use 4 attributes
 COLS = ['Male', 'Asian', 'White', 'Black']
