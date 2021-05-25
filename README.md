@@ -27,7 +27,7 @@ You can download LFWA+ dataset [here](http://mmlab.ie.cuhk.edu.hk/projects/Celeb
 ```bash
 python feature_extraction.py --data_dir LFWA/ --save_feature feature.csv --save_label label.csv
 ```
-You can run feature_extraction.py like the above command or just run the jupyter notebook (feature-extracion.ipynb) step by step.
+You can run feature_extraction.py like the above command or just run the jupyter notebook (feature-extraction.ipynb) step by step.
 
 We are going to use the face embedding function _face_encodings_ in [face_recognition](https://github.com/ageitgey/face_recognition/) package, which is based on [dlib](http://dlib.net/)'s _face_recognition_model_v1_. This function takes a face image as input and outputs a 128-dimensional face embedding vector. This function is basically an implementation of [Face-Net](https://arxiv.org/abs/1503.03832), a deep CNN trained with triplet loss. Please refer to the [original paper](https://arxiv.org/abs/1503.03832) for more details
 
